@@ -1,0 +1,10 @@
+-- Commands that you would run in the GF shell
+
+i -retain alltenses/LexiconEng.gfo
+
+-- Will output the result of these on the terminal
+cc -list eat_V2
+cc -list sleep_V
+
+-- and then you can take that output and compare against gold standard
+
