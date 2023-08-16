@@ -64,7 +64,7 @@ open ResEng in
 -- Noun
     -- : Det -> CN -> NP ;       -- the man
     DetCN det cn = {
-      s = det.s ++ cn.s ;
+      s = det.s ++ cn.s ! det.n ;
     } ;
 
     -- : Pron -> NP ;            -- she
@@ -81,7 +81,7 @@ open ResEng in
 
     -- : AP -> CN -> CN ;        -- big house
     AdjCN ap cn = {
-      s = ap.s ++ cn.s ;
+      s = table {num => ap.s ++ cn.s ! num} ;
     } ;
 
 -- Adjective

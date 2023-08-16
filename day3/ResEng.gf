@@ -5,7 +5,12 @@ param
 
 oper
 
-  Noun : Type = {s : Str} ; -- Inflection table
+  Noun : Type = {s : Number => Str} ; -- Inflection table
+  mkN : Str -> Noun ;
+  mkN str = {s = table {
+                   Sg => str ;
+                   Pl => str + "s" }
+            } ;
 
   Determiner : Type = {s : Str ; n : Number} ;
   mkDet : Str -> Number -> Determiner ;
@@ -19,8 +24,6 @@ oper
   mkPron : Str -> {s : Str}  ;
   mkPron str = {s = str} ;
 
-  mkN : Str -> {s : Str} ;
-  mkN str = {s = str} ;
 
   mkA : Str -> {s : Str} ;
   mkA str = {s = str} ;
