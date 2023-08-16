@@ -76,9 +76,6 @@ open ResEng in
     -- : Det ;                   -- definite plural     ---s
     these_Det = mkDet "these" Pl ;
 
-    -- : CN -> NP ;              -- beer
-    MassNP n = n ;
-
     -- : N -> CN ;               -- house
     UseN n = n ;
 

@@ -48,7 +48,6 @@ abstract MicroLang = {
     UsePron   : Pron -> NP ;            -- she
     this_Det   : Det ;                  -- this   ---s
     these_Det : Det ;                   -- these     ---s
-    MassNP    : CN -> NP ;              -- beer
     UseN      : N -> CN ;               -- house
     AdjCN     : AP -> CN -> CN ;        -- big house
 

@@ -72,9 +72,6 @@ concrete MicroLangDummy of MicroLang = {
     -- : Det ;                   -- definite plural     ---s
     these_Det = {s = "these"} ;
 
-    -- : CN -> NP ;              -- beer
-    MassNP n = n ;
-
     -- : N -> CN ;               -- house
     UseN n = n ;
 
