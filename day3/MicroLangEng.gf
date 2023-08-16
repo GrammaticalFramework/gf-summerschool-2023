@@ -19,18 +19,20 @@ open ResEng in
     VP,     -- verb phrase                         e.g. "lives here"
     Comp,   -- complement of copula                e.g. "warm"
     AP,     -- adjectival phrase                   e.g. "warm"
-    CN,     -- common noun (without determiner)    e.g. "red house"
     NP,     -- noun phrase (subject or object)     e.g. "the red house"
-    Det,    -- determiner phrase                   e.g. "those"
     Prep,   -- preposition, or just case           e.g. "in", dative
     V,      -- one-place verb                      e.g. "sleep"
     V2,     -- two-place verb                      e.g. "love"
     A,      -- one-place adjective                 e.g. "warm"
-    N,      -- common noun                         e.g. "house"
     Pron,   -- personal pronoun                    e.g. "she"
     Adv     -- adverbial phrase                    e.g. "in the house"
      = {s : Str} ;
 
+ --- Start by separating out the nouny bits
+ --- Goal 1: Number agreement
+    CN,     -- common noun (without determiner)    e.g. "red house"
+    N = Noun ;     -- common noun                         e.g. "house"
+    Det = Determiner ;  -- determiner phrase                   e.g. "those"
   lin
 -- Phrase
     -- : S  -> Utt ;         -- he walks

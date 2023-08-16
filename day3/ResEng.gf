@@ -2,6 +2,11 @@ resource ResEng = {
 
 oper
 
+  Determiner : Type = {s : Str} ;
+  Noun : Type = {s : Str} ;
+
+--- The old, just strings, going to change later
+
   mkPrep : Str -> {s : Str}  ;
   mkPrep str = {s = str} ;
 
