@@ -73,7 +73,7 @@ abstract MicroLang = {
 
 fun
   big_A : A ;
-  book_N : N ;
+  bay_N : N ;
   buy_V2 : V2 ;
   come_V : V ;
   good_A : A ;
@@ -81,7 +81,7 @@ fun
   house_N : N ;
 --  john_PN : PN ;
 --  know_VS : VS ;
-  language_N : N ;
+  fly_N : N ;
   live_V : V ;
   love_V2 : V2 ;
   music_N : N ;

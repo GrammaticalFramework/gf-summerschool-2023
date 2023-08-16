@@ -128,7 +128,7 @@ oper
 
 lin
   big_A = mkA "big" ;
-  book_N = mkN "book" ;
+  bay_N = mkN "bay" ;
   buy_V2  = mkV2 "buy" ;
   come_V = mkV "come" ;
   good_A = mkA "good" ;
@@ -136,7 +136,7 @@ lin
   house_N = mkN "house" ;
 --  john_PN : PN ;
 --  know_VS : VS ;
-  language_N = mkN "language" ;
+  fly_N = mkN "fly" ;
   live_V = mkV "live" ;
   love_V2  = mkV2 "love" ;
   music_N = mkN "music" ;
