@@ -2,6 +2,7 @@ abstract MicroLang = {
 
 -- a very minimal version of MiniGrammar + MiniLexicon, helping to get started
 
+  flags startcat = Utt ;
 -----------------------------------------------------
 ---------------- Grammar part -----------------------
 -----------------------------------------------------
