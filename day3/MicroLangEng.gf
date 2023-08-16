@@ -16,23 +16,30 @@ open ResEng in
 
 -- Cat
     S,      -- declarative sentence                e.g. "she lives here"
-    VP,     -- verb phrase                         e.g. "lives here"
     Comp,   -- complement of copula                e.g. "warm"
     AP,     -- adjectival phrase                   e.g. "warm"
-    NP,     -- noun phrase (subject or object)     e.g. "the red house"
     Prep,   -- preposition, or just case           e.g. "in", dative
-    V,      -- one-place verb                      e.g. "sleep"
-    V2,     -- two-place verb                      e.g. "love"
     A,      -- one-place adjective                 e.g. "warm"
-    Pron,   -- personal pronoun                    e.g. "she"
     Adv     -- adverbial phrase                    e.g. "in the house"
      = {s : Str} ;
 
  --- Start by separating out the nouny bits
- --- Goal 1: Number agreement
+ --- Goal 1: Number agreement inside NP
     CN,     -- common noun (without determiner)    e.g. "red house"
     N = Noun ;     -- common noun                         e.g. "house"
     Det = Determiner ;  -- determiner phrase                   e.g. "those"
+
+    Pron,   -- personal pronoun                    e.g. "she"
+    NP = NounPhrase ;   -- noun phrase (subject or object)     e.g. "the red house"
+ --- Continue by separating out the verby bits
+ --- Goal 2: Person agreement with subject and verb
+    VP = Verb ;     -- verb phrase                         e.g. "lives here"
+
+    V,      -- one-place verb = intransitive       e.g. "sleep"
+    V2 = Verb ;
+         -- two-place verb = transitive         e.g. "love"
+
+
   lin
 -- Phrase
     -- : S  -> Utt ;         -- he walks
@@ -43,28 +50,38 @@ open ResEng in
 
 -- Sentence
     -- : NP -> VP -> S ;             -- John walks
-    PredVPS np vp = {s = np.s ++ vp.s} ;
+    PredVPS np vp = {s = np.s ++ vp.s ! np.p} ;
 
 -- Verb
     -- : V   -> VP ;             -- sleep
     UseV v = v ;
 
     -- : V2  -> NP -> VP ;       -- love it
-    ComplV2 v2 np = {s = v2.s ++ np.s} ;
+    ComplV2 v2 np = {
+      s = table {agr => v2.s ! agr ++ np.s}
+      } ;
 
     -- : Comp  -> VP ;           -- be small
-    UseComp comp = {s = "be" ++ comp.s} ;
+    UseComp comp = {
+      -- all produce the same result
+      s = table {agr => copula ! agr ++ comp.s}
+      -- s = \\agr => copula ! agr ++ comp.s ;
+      -- s = copulaCompl comp.s ;
+      } ;
 
     -- : AP  -> Comp ;           -- small
     CompAP ap = ap ;
 
     -- : VP -> Adv -> VP ;       -- sleep here
-    AdvVP vp adv = {s = vp.s ++ adv.s} ;
+    AdvVP vp adv = {
+      s = table {agr => vp.s ! agr ++ adv.s}
+      } ;
 
 -- Noun
     -- : Det -> CN -> NP ;       -- the man
     DetCN det cn = {
       s = det.s ++ cn.s ! det.n ;
+      p = getVerbAgr det.n ;
     } ;
 
     -- : Pron -> NP ;            -- she
@@ -98,9 +115,9 @@ open ResEng in
     on_Prep = mkPrep "on" ;
     with_Prep = mkPrep "with" ;
 
-    he_Pron   = mkPron "he"   ;
-    she_Pron  = mkPron "she"  ;
-    they_Pron = mkPron "they" ;
+    he_Pron   = mkPron "he" Sg  ;
+    she_Pron  = mkPron "she" Sg  ;
+    they_Pron = mkPron "they" Pl ;
 
 
 -----------------------------------------------------
@@ -111,7 +128,7 @@ open ResEng in
 lin
   big_A = mkA "big" ;
   bay_N = mkN "bay" ;
-  buy_V2  = mkV2 "buy" ;
+  buy_V2 = mkV2 "buy" ;
   come_V = mkV "come" ;
   good_A = mkA "good" ;
   go_V = mkV "go" ;
