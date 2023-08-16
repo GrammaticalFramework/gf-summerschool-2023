@@ -71,10 +71,10 @@ open ResEng in
     UsePron pron = pron ;
 
     -- : Det ;                   -- definite singular   ---s
-    this_Det = {s = "this"} ;
+    this_Det = mkDet "this" Sg ;
 
     -- : Det ;                   -- definite plural     ---s
-    these_Det = {s = "these"} ;
+    these_Det = mkDet "these" Pl ;
 
     -- : CN -> NP ;              -- beer
     MassNP n = n ;
