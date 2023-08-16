@@ -2,3 +2,5 @@ i -retain MicroLangEng.gf
 cc -list tree_N
 cc -list bay_N
 cc -list fly_N
+cc -list mkN "match"
+cc -list mkN "fox"
