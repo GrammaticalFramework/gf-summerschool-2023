@@ -6,8 +6,8 @@ concrete ExplainLinrefCnc of ExplainLinref = {
         MySimpleCat = {s : Str} ;
         MyComplexCat = LinMyComplexCat ;
 
-    -- linref
-    --     MyComplexCat = linMyComplexCat ;
+    linref
+        MyComplexCat = linMyComplexCat' Red ;
 
     param
        FavColour = Red | Blue | Green ;
@@ -23,9 +23,12 @@ concrete ExplainLinrefCnc of ExplainLinref = {
         linMyComplexCat : LinMyComplexCat -> Str ;
         linMyComplexCat mcc = mcc.s ! Green ++ mcc.postmod ;
 
+        linMyComplexCat' : FavColour -> LinMyComplexCat -> Str ;
+        linMyComplexCat' c mcc = mcc.s ! c ++ mcc.postmod ;
+
     lin
         -- : MyComplexCat -> MySimpleCat ;
-        SimpleExample mcc = {s = linMyComplexCat mcc} ;
+        SimpleExample mcc = {s = linMyComplexCat' Blue mcc} ;
 
         ComplexExample = {
             s = table {Blue => "blue" ;
